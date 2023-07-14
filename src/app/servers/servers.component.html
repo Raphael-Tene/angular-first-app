@@ -1,0 +1,31 @@
+<div class="container">
+  <label>Server Name</label>
+  <!-- one way data binding -->
+  <input
+    class="form-control"
+    type="text"
+    (input)="onUpdateServerName($event)"
+  />
+  <br />
+  <p>{{ serverName }}</p>
+  <br />
+  <!-- two way data binding -->
+  <label>Greeting</label>
+  <input class="form-control" type="text" [(ngModel)]="greetingString" />
+  <p>{{ greetingString }}</p>
+
+  <button
+    class="btn btn-danger"
+    [disabled]="!allowNewServer"
+    (click)="onCreateServer()"
+  >
+    Add Server
+  </button>
+  <p>{{ allowNewServer }}</p>
+  <p *ngIf="serverIsCreated; else noServer">{{ serverCreated }}</p>
+  <ng-template #noServer>
+    <p>No server created.</p>
+  </ng-template>
+  <h2>{{ name }}</h2>
+  <app-server *ngFor="let server of servers" />
+</div>
